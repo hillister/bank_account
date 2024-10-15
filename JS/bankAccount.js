@@ -63,7 +63,7 @@ class BankAccount {
             console.log('The account you are trying to transfer to is not active');
         } else if(amount >= 5 && amount <= this.balance){
             this.balance = this.balance - amount;
-            console.log(`You successfully transfered ${amount} to account number ${recipientAccount.accountNumber}.Your new balance is ${this.newBalance}`)
+            console.log(`You successfully transfered ${amount} to account number ${recipientAccount.accountNumber}.Your new balance is ${this.balance}`)
             recipientAccount.balance = amount + recipientAccount.balance
             this.transactions.unshift(`Transfered: $${amount} on ${new Date().toLocaleString()} to ${recipientAccount.name}, Account no. ${recipientAccount.accountNumber}`)
             recipientAccount.transactions.unshift(`Received: $${amount} on ${new Date().toLocaleString()} from ${this.name}, Account no. ${this.accountNumber}`)
@@ -103,28 +103,20 @@ class BankAccount {
 }
 
 
+
+
+
+
 const jerry = new BankAccount('Jerry', 50);
 const peter = new BankAccount('Peter');
-
+console.log(jerry.name);
 console.log(jerry.accountNumber)
+console.log(peter.name);
 console.log(peter.accountNumber)
 
-jerry.deposit(400)
-console.log(jerry.balance)
-jerry.accountStatement()
 
 /*const interestInfo = BankAccount.calcInterest(jerry.getBalance(), 4.5); 
 console.log(`The interest you have earned is $${interestInfo.interest}`);
 console.log(`Your new balance with interest added is $${interestInfo.newBalance}`);
 */
 
-peter.deposit(200)
-console.log(peter.balance)
-
-peter.withdraw(300)
-peter.withdraw(2)
-peter.withdraw(30)
-
-peter.enableOverdraft(300)
-console.log(peter.balance)
-peter.withdraw(980)

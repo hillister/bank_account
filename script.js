@@ -1,19 +1,18 @@
 class BankAccount {
-    constructor(accountNumber) {
-        this.accountNumber = accountNumber;
+    constructor(name) {
+        this.name = name;
+        this.accountNumber = Math.floor(100000 + Math.random() * 900000);
         this.balance = 0;
     }
 
-    deposit(amount){
-        let balance =  amount + this.balance
-        this.balance = balance
+    deposit(amount) {
+        this.balance =  amount + this.balance
         console.log(`You successfully deposited $${amount}`)
     }
 
-    withdraw(amount){
+    withdraw(amount) {
         if(amount >= 5 && amount <= this.balance){
-            let balance =  this.balance - amount
-            this.balance = balance
+            this.balance =  this.balance - amount
             console.log(`You successfully withdrew $${amount}`)
         } else if(amount > this.balance){
             console.log(`You do not have enough money to withdraw this ammount`);
@@ -22,21 +21,32 @@ class BankAccount {
         }
     }
 
-    getBalance(currentBalance){
+    getBalance(currentBalance) {
         currentBalance = this.balance;
         console.log(`Your current balance is: $${currentBalance}`) 
+    }
+
+    transfer(amount, recipientAccount) {
+        if(amount >= 5 && amount <= this.balance){
+            this.balance = this.balance - amount;
+            console.log(`You successfully transfered ${amount} to account number ${recipientAccount.accountNumber}.Your new balance is ${this.balance}`)
+            recipientAccount.balance = amount + recipientAccount.balance
+        } else if(amount > this.balance){
+            console.log(`You do not have enough money in your account`);
+        } else {
+            console.log(`The minimum transfer is $5`);
+        }
     }
 }
 
 
-const jerry = new BankAccount(69847)
+const jerry = new BankAccount('Jerry');
+const peter = new BankAccount('Peter');
 
-jerry.deposit(200);
-jerry.deposit(40);
-jerry.withdraw(10);
-jerry.withdraw(2);
+console.log(jerry.accountNumber)
+console.log(peter.accountNumber)
 
-jerry.getBalance();
+jerry.deposit(400)
+jerry.transfer(20, peter);
 
-jerry.deposit(40);
-jerry.getBalance();
+peter.getBalance();

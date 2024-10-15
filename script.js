@@ -21,9 +21,8 @@ class BankAccount {
         }
     }
 
-    getBalance(currentBalance) {
-        currentBalance = this.balance;
-        console.log(`Your current balance is: $${currentBalance}`) 
+    getBalance() {
+        return this.balance
     }
 
     transfer(amount, recipientAccount) {
@@ -36,6 +35,15 @@ class BankAccount {
         } else {
             console.log(`The minimum transfer is $5`);
         }
+    }
+
+    static calcInterest(balance, rate){
+        const interest = balance * (rate/100);
+        const newBalance = balance + interest;
+        return {
+            interest: interest,
+            newBalance: newBalance
+        };
     }
 }
 
@@ -50,3 +58,7 @@ jerry.deposit(400)
 jerry.transfer(20, peter);
 
 peter.getBalance();
+
+const interestInfo = BankAccount.calcInterest(jerry.getBalance(), 4.5); 
+console.log(`The interest you have earned is $${interestInfo.interest}`);
+console.log(`Your new balance with interest added is $${interestInfo.newBalance}`);

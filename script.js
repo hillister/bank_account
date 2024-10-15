@@ -35,13 +35,21 @@ class BankAccount {
             this.balance =  this.balance - amount
             console.log(`You successfully withdrew $${amount}`)
             this.transactions.unshift(`Withdrew: $${amount} on ${new Date().toLocaleString()}`)
-
-
-        } else if(amount > this.balance){
-            console.log(`You do not have enough money to withdraw this ammount`);
-        } else {
+        } else if(amount > this.balance && !this.overdraftLimit){
+            console.log(`You do not have enough money to withdraw this ammount. You can enable an overdraft in the settings.`);
+        } else if(this.overdraftLimit && amount < this.balance + this.overdraftLimit){
+            this.balance =  this.balance - amount
+            console.log(`You successfully withdrew $${amount}`)
+            this.transactions.unshift(`Withdrew: $${amount} on ${new Date().toLocaleString()}`)
+        } else if(amount > this.balance && amount > this.overdraftLimit){
+            console.log(`You do not have enough money to withdraw this ammount. Youre overdraft limit is set at ${this.overdraftLimit}`);
+        }else {
             console.log(`The minimum withdrawl is $5`);
         }
+    }
+
+    enableOverdraft(limit){
+        this.overdraftLimit = limit;
     }
 
     getBalance() {
@@ -110,7 +118,13 @@ console.log(`The interest you have earned is $${interestInfo.interest}`);
 console.log(`Your new balance with interest added is $${interestInfo.newBalance}`);
 */
 
+peter.deposit(200)
+console.log(peter.balance)
 
-jerry.freezeAccount()
-jerry.deposit(30)
-peter.deposit(50);
+peter.withdraw(300)
+peter.withdraw(2)
+peter.withdraw(30)
+
+peter.enableOverdraft(300)
+console.log(peter.balance)
+peter.withdraw(980)

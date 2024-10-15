@@ -1,26 +1,27 @@
 class BankAccount {
-    constructor(name) {
+    constructor(name, startingBalance = 0) {
         this.name = name;
         this.accountNumber = Math.floor(100000 + Math.random() * 900000);
-        this.startingBalance = 0;
+        this.balance = startingBalance;
+        this.startingBalance = startingBalance;
         this.transactions = [];
         this.createdOn = new Date();
     }
 
     deposit(amount) {
-        this.newBalance =  amount + this.startingBalance
+        this.balance = amount + this.balance;
         console.log(`You successfully deposited $${amount}`)
         this.transactions.unshift(`Deposited: $${amount} on ${new Date().toLocaleString()}`)
     }
 
     withdraw(amount) {
-        if(amount >= 5 && amount <= this.newBalance){
-            this.newBalance =  this.newBalance - amount
+        if(amount >= 5 && amount <= this.balance){
+            this.balance =  this.balance - amount
             console.log(`You successfully withdrew $${amount}`)
             this.transactions.unshift(`Withdrew: $${amount} on ${new Date().toLocaleString()}`)
 
 
-        } else if(amount > this.newBalance){
+        } else if(amount > this.balance){
             console.log(`You do not have enough money to withdraw this ammount`);
         } else {
             console.log(`The minimum withdrawl is $5`);
@@ -28,17 +29,17 @@ class BankAccount {
     }
 
     getBalance() {
-        return this.newBalance
+        return this.balance
     }
 
     transfer(amount, recipientAccount) {
-        if(amount >= 5 && amount <= this.newBalance){
-            this.newBalance = this.newBalance - amount;
+        if(amount >= 5 && amount <= this.balance){
+            this.balance = this.balance - amount;
             console.log(`You successfully transfered ${amount} to account number ${recipientAccount.accountNumber}.Your new balance is ${this.newBalance}`)
-            recipientAccount.newBalance = amount + recipientAccount.newBalance
+            recipientAccount.balance = amount + recipientAccount.balance
             this.transactions.unshift(`Transfered: $${amount} on ${new Date().toLocaleString()} to ${recipientAccount.name}, Account no. ${recipientAccount.accountNumber}`)
             recipientAccount.transactions.unshift(`Received: $${amount} on ${new Date().toLocaleString()} from ${this.name}, Account no. ${this.accountNumber}`)
-        } else if(amount > this.newBalance){
+        } else if(amount > this.balance){
             console.log(`You do not have enough money in your account`);
         } else {
             console.log(`The minimum transfer is $5`);
@@ -74,19 +75,17 @@ class BankAccount {
 }
 
 
-const jerry = new BankAccount('Jerry');
+const jerry = new BankAccount('Jerry', 50);
 const peter = new BankAccount('Peter');
 
 console.log(jerry.accountNumber)
 console.log(peter.accountNumber)
 
 jerry.deposit(400)
-jerry.transfer(20, peter);
+console.log(jerry.balance)
+jerry.accountStatement()
 
-peter.getBalance();
-
-const interestInfo = BankAccount.calcInterest(jerry.getBalance(), 4.5); 
+/*const interestInfo = BankAccount.calcInterest(jerry.getBalance(), 4.5); 
 console.log(`The interest you have earned is $${interestInfo.interest}`);
 console.log(`Your new balance with interest added is $${interestInfo.newBalance}`);
-
-jerry.accountStatement()
+*/

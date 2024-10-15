@@ -6,16 +6,32 @@ class BankAccount {
         this.startingBalance = startingBalance;
         this.transactions = [];
         this.createdOn = new Date();
+        this.isFrozen = false;
+        this.isClosed = false;
+    }
+
+    freezeAccount(){
+        this.isFrozen = true;
+    }
+
+    closeAccount(){
+        this.isClosed = true;
     }
 
     deposit(amount) {
-        this.balance = amount + this.balance;
-        console.log(`You successfully deposited $${amount}`)
-        this.transactions.unshift(`Deposited: $${amount} on ${new Date().toLocaleString()}`)
+        if(this.isClosed === true || this.isFrozen === true){
+            console.log('You cannot deposit money the account is not active')
+        } else {
+            this.balance = amount + this.balance;
+            console.log(`You successfully deposited $${amount}`)
+            this.transactions.unshift(`Deposited: $${amount} on ${new Date().toLocaleString()}`)
+        }
     }
 
     withdraw(amount) {
-        if(amount >= 5 && amount <= this.balance){
+        if(this.isClosed === true || this.isFrozen === true){
+            console.log('You cannot withdraw money the account is not active')
+        } else if(amount >= 5 && amount <= this.balance){
             this.balance =  this.balance - amount
             console.log(`You successfully withdrew $${amount}`)
             this.transactions.unshift(`Withdrew: $${amount} on ${new Date().toLocaleString()}`)
@@ -33,7 +49,11 @@ class BankAccount {
     }
 
     transfer(amount, recipientAccount) {
-        if(amount >= 5 && amount <= this.balance){
+        if(this.isClosed === true || this.isFrozen === true){
+            console.log('You cannot transfer money your account is not active');
+        } else if (recipientAccount.isClosed === true || recipientAccount.isFrozen === true){
+            console.log('The account you are trying to transfer to is not active');
+        } else if(amount >= 5 && amount <= this.balance){
             this.balance = this.balance - amount;
             console.log(`You successfully transfered ${amount} to account number ${recipientAccount.accountNumber}.Your new balance is ${this.newBalance}`)
             recipientAccount.balance = amount + recipientAccount.balance
@@ -41,7 +61,7 @@ class BankAccount {
             recipientAccount.transactions.unshift(`Received: $${amount} on ${new Date().toLocaleString()} from ${this.name}, Account no. ${this.accountNumber}`)
         } else if(amount > this.balance){
             console.log(`You do not have enough money in your account`);
-        } else {
+        } else if (ammount < 5){
             console.log(`The minimum transfer is $5`);
         }
     }
@@ -89,3 +109,8 @@ jerry.accountStatement()
 console.log(`The interest you have earned is $${interestInfo.interest}`);
 console.log(`Your new balance with interest added is $${interestInfo.newBalance}`);
 */
+
+
+jerry.freezeAccount()
+jerry.deposit(30)
+peter.deposit(50);

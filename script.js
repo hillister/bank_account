@@ -56,8 +56,12 @@ class BankAccount {
 
     transactionLog(transactions){
         transactions = this.transactions;
-        for(const transaction in transactions){
-            console.log(transactions[transaction])
+        if(transactions.length === 0){
+            console.log('No transactions yet')
+        } else {
+            for(const transaction of transactions){
+            console.log(transaction)
+            }
         }
     }
 }
@@ -80,5 +84,6 @@ console.log(`Your new balance with interest added is $${interestInfo.newBalance}
 
 console.log(jerry.createdOn)
 jerry.withdraw(20)
-console.log(jerry.transactions)
 jerry.transactionLog()
+
+peter.transactionLog()

@@ -53,6 +53,13 @@ class BankAccount {
             newBalance: newBalance
         };
     }
+
+    transactionLog(transactions){
+        transactions = this.transactions;
+        for(const transaction in transactions){
+            console.log(transactions[transaction])
+        }
+    }
 }
 
 
@@ -74,3 +81,4 @@ console.log(`Your new balance with interest added is $${interestInfo.newBalance}
 console.log(jerry.createdOn)
 jerry.withdraw(20)
 console.log(jerry.transactions)
+jerry.transactionLog()

@@ -5,30 +5,40 @@
 
 header {
     display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: 5fr 1fr;
+    grid-template-columns: 11fr 1fr 1fr;
+    grid-template-rows: 1fr;
     background-color: rgb(19, 19, 54);
     color: rgb(248, 56, 136);
-}
-
-.piggyIcon {
-    grid-row: 1/2;
-    width: 250px;
-    height: auto;
-    justify-self: center;
+    padding: 20px;
 }
 
 #heading {
-    grid-column-start: 2;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    align-self: center;
-    margin-bottom: 50px;
-    margin-right: 1450px;
     font-size: 40px;
 }
 
 #tagline {
-    align-self: self-start;
-    justify-self: center;
+    grid-row-start: 2;
+    background-color: rgb(120, 224, 255);
+    grid-column: span 3;
+    text-align: center;
+    color: rgb(248, 56, 136);
+    padding: 5px;
+}
+
+.signup,
+.login {
+    width: 90px;
+    height: 45px;
+    border-radius: 20px;
+    background-color: rgb(248, 56, 136);
+    border: none;
+    color: rgb(19, 19, 54);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.signup:hover,
+.login:hover {
+    background-color: rgb(120, 224, 255);
+    cursor: pointer;
 }

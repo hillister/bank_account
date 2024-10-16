@@ -2,14 +2,14 @@
     margin: 0;
     padding: 0;
 }
-
+/*header*/
 header {
     display: grid;
     grid-template-columns: 11fr 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 2fr 1fr;
     background-color: rgb(19, 19, 54);
     color: rgb(248, 56, 136);
-    padding: 20px;
+    padding: 10px;
 }
 
 #heading {
@@ -18,11 +18,9 @@ header {
 
 #tagline {
     grid-row-start: 2;
-    background-color: rgb(120, 224, 255);
-    grid-column: span 3;
-    text-align: center;
+    background-color: rgb(19, 19, 54);
+    font-size: 13px;
     color: rgb(248, 56, 136);
-    padding: 5px;
 }
 
 .signup,
@@ -35,10 +33,59 @@ header {
     color: rgb(19, 19, 54);
     font-size: 16px;
     font-weight: 700;
+    align-self: center;
+    justify-self: center;
+    grid-row: span 2;
 }
 
 .signup:hover,
 .login:hover {
     background-color: rgb(120, 224, 255);
     cursor: pointer;
+}
+
+/*footer*/
+.footer {
+    background-color: rgb(19, 19, 54);
+    color: rgb(248, 56, 136);
+    text-align: center;
+    padding: 20px;
+}
+
+/*info*/
+.info {
+    background: url("engin-akyurt-y-8f3ENnb1g-unsplash.jpg");
+    padding: 200px;
+    color: rgb(19, 19, 54);
+    font-size: 25px;
+    text-align: center;
+}
+
+/*reviews*/
+.reviews {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 7fr;
+    padding-bottom: 400px;
+}
+
+.review1,
+.review2,
+.review3 {
+    border: solid;
+    border-color: rgb(120, 224, 255);
+    border-radius: 20px;
+    height: 400px;
+    width: 400px;
+    justify-self: center;
+}
+
+.reviewHeading {
+    grid-column: span 3;
+    justify-self: center;
+    align-self: center;
+    font-size: 20px;
+    color: rgb(248, 56, 136);
+    font-weight: 800;
+    border-bottom: solid;
 }

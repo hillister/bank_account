@@ -55,8 +55,8 @@ header {
 /*info*/
 .info {
     background: url("engin-akyurt-y-8f3ENnb1g-unsplash.jpg");
-    padding: 200px;
-    color: rgb(19, 19, 54);
+    padding: 280px;
+    color: white;
     font-size: 25px;
     text-align: center;
 }
@@ -66,7 +66,8 @@ header {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 7fr;
-    padding-bottom: 400px;
+    padding-bottom: 50px;
+    padding-top: 50px;
 }
 
 .review1,
@@ -78,6 +79,10 @@ header {
     height: 400px;
     width: 400px;
     justify-self: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 5fr 1fr;
+    background-color: rgb(245, 244, 244);
 }
 
 .reviewHeading {
@@ -88,4 +93,27 @@ header {
     color: rgb(248, 56, 136);
     font-weight: 800;
     border-bottom: solid;
+    margin-bottom: 20px;
+}
+
+.person {
+    align-self: self-start;
+    justify-self: end;
+    padding: 10px;
+    font-weight: 900;
+    color: rgb(248, 56, 136);
+
+}
+
+.contentReview {
+    align-self: center;
+    font-size: 23px;
+    color: rgb(19, 19, 54);
+    padding: 15px;
+}
+
+.whyUs {
+    background-color: rgb(19, 19, 54);
+    color: white;
+
 }

@@ -112,8 +112,16 @@ header {
     padding: 15px;
 }
 
+/*choose us*/
 .whyUs {
     background-color: rgb(19, 19, 54);
     color: white;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
 
+#piggyIcon {
+    grid-row-start: 1;
+    grid-row-end: 4;
 }

@@ -11,6 +11,7 @@ class Login {
         const password = document.getElementById("password").value;
 
         if(this.validateLogin(username, password)){
+            sessionStorage.setItem('loggedInUser', username)
             alert(`Welcome back, ${username}!`);
             window.location.href = 'dashboard.html';
         } else {

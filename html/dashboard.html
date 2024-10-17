@@ -11,34 +11,40 @@
         <img id="icon" src="../assests/file.png">
         <button id="logout">Log Out</button>
     </header>
-    <div class="welcomeBack">
-        <h1>Welcome</h1>
+    <div class="mainContent">
+        <div class="welcomeBack">
+            <h1 id="welcomeUser">Welcome, </h1>
+            <p id="balanceInfo">Balance: </p>
+            <p id="accountInfo">Account Number: </p>
+        </div>
+        <div class="depositWithdrawl">
+            <button id="deposit">Deposit</button>
+            <button id="withdrawl">Withdrawl</button>
+        </div>
+        <div class="transfer">
+            <form class="transferForm">
+                <legend>Transfer</legend>
+                <label for="amount">Amount</label>
+                <input id="amount" name="amount" required>
+                <label for="accountNo">Account no.</label>
+                <input id="accountNo" name="accountNo" required>
+                <button type="submit" id="transfer">Transfer</button>
+            </form>
+        </div>
+        <div class="overdraft">
+            <p>Overdrafts at Piggypal: Because Life Happens!</p>
+            <p>How it works:</p>
+            <p>Spend more than you have? No problem! We'll cover the difference (up to your overdraft limit), so your card won't get declined in front of the cashier. You're welcome!</p>
+            <p>Just remember: our pigs might be cute, but they know when they're owed! We'll be expecting that money back once payday rolls around.</p>
+            <p>So go ahead—treat yourself. With Piggypal Overdraft Protection, you're covered. Just don't forget, even the pig has limits!</p>
+        </div>
+        <div class="transactionHisotry">
+            <p>Transaction Hisotry</p>
+            <div class="transactionInfo"></div>
+            <button id="statement">Get Statement</button>
+        </div>
     </div>
-    <div class="depositWithdrawl">
-        <button id="deposit">Deposit</button>
-        <button id="withdrawl">Withdrawl</button>
-    </div>
-    <div class="transfer">
-        <form class="transferForm">
-            <legend>Transfer</legend>
-            <label for="amount">Amount</label>
-            <input id="amount" name="amount" required>
-            <label for="accountNo">Account no.</label>
-            <input id="accountNo" name="accountNo" required>
-            <button type="submit" id="transfer">Transfer</button>
-        </form>
-    </div>
-    <div>
-        <p>Overdrafts at Piggypal: Because Life Happens!</p>
-        <p>How it works:</p>
-        <p>Spend more than you have? No problem! We'll cover the difference (up to your overdraft limit), so your card won't get declined in front of the cashier. You're welcome!</p>
-        <p>Just remember: our pigs might be cute, but they know when they're owed! We'll be expecting that money back once payday rolls around.</p>
-        <p>So go ahead—treat yourself. With Piggypal Overdraft Protection, you're covered. Just don't forget, even the pig has limits!</p>
-    </div>
-    <div class="transactionHisotry">
-        <p>Transaction Hisotry</p>
-        <div class="transactionInfo"></div>
-        <button id="statement">Get Statement</button>
-    </div>
+    <script src="../js/bankAccount.js"></script>
+    <script src="../js/dashboard.js"></script>
 </body>
 </html>

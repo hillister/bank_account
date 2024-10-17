@@ -14,6 +14,13 @@ class Dashboard {
         if(userData){
             const welcomeMessage = document.getElementById('welcomeUser');
             welcomeMessage.textContent = `Welcome, ${userData.username}!`
+
+            const balanceInfo = document.getElementById('balanceInfo');
+            balanceInfo.textContent = `Balance: $${userData.balance.toFixed(2)}`
+
+            const accountNo = document.getElementById('accountInfo')
+            accountNo.textContent = `Account number: ${userData.accountNumber}`;
+
         }
     }
 }

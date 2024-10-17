@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#icon {
+    width: 100px;
+    height: auto;
+}
+
+header {
+    background-color: grey;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#logout {
+    width: 90px;
+    height: 40px;
+    align-self: center;
+    justify-self: end;
+    margin-right: 20px;
+}

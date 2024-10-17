@@ -21,6 +21,7 @@ class Dashboard {
             const accountNo = document.getElementById('accountInfo')
             accountNo.textContent = `Account number: ${userData.accountNumber}`;
 
+            this.userAccount = userData
         }
     }
 }

@@ -20,6 +20,22 @@
         <div class="depositWithdrawl">
             <button id="deposit">Deposit</button>
             <button id="withdrawl">Withdrawl</button>
+            <div id="transactionForm" class="hidden">
+                <form id="transactionFormElement">
+                    <label for="amount">Amount:</label>
+                    <input type="number" id="transactionAmount" name="amount" required min="1">
+                    <button type="submit" id="submitTransaction">Go</button>
+                </form>
+                <p id="transactionMessage"></p>
+            </div>   
+            <div id="transactionForm" class="hidden">
+                <form id="transactionFormElement">
+                    <label for="amount">Amount:</label>
+                    <input type="number" id="transactionAmount" name="amount" required min="1">
+                    <button type="submit" id="submitTransaction">Go</button>
+                </form>
+                <p id="transactionMessage"></p>
+            </div>
         </div>
         <div class="transfer">
             <form class="transferForm">

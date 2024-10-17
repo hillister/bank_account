@@ -37,3 +37,6 @@ header {
     border: solid;
 }
 
+.hidden {
+    display: none;
+}

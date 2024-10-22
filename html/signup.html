@@ -4,19 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PiggyPal Sign up!</title>
-   
+    <link rel="stylesheet" href="../css/signup.css">
 </head>
 <body>
-    <h1>signup page</h1>
+    <header>
+        <h1 id="heading">PiggyPal</h1>
+    </header>
     <form>
         <legend>Join us!</legend>
-        <label for="username">PiggyName</label>
+        <label for="username" id="usernameTxt">PiggyName</label>
         <input type="text" id="username" name="username" required>
-        <label for="email">OinkMail</label>
+        <label for="email" id="emailTxt">OinkMail</label>
         <input type="email" name="email" id="email" required>
-        <label for="password">Secret Piggy Password</label>
+        <label for="password" id="passwordTxt">Secret Piggy Password</label>
         <input type="password" id="password" name="password" required>
-        <label for="startingBalance">Starting Balance:</label>
+        <label for="startingBalance" id="startBalTxt">Starting Balance:</label>
         <input type="number" id="startingBalance" name="startingBalance" required>
         <button type="submit" id="submit">JOIN</button>
     </form>

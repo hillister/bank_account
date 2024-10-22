@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    height: 80px;
+    background-color: rgb(19, 19, 54);
+    color: rgb(248, 56, 136);
+    padding: 10px;
+}
+#heading {
+    font-size: 40px;
+}
+
+body {
+    background-color: rgb(225, 241, 247);
+}
+
+form {
+    background-color: white;
+    display: grid;
+    grid-template-rows: repeat(10, 1fr);
+    grid-template-columns: 200px 200px;
+    justify-content: center;
+    padding: 40px;
+    row-gap: 30px;
+    font-size: 20px;
+    margin-top: 90px;
+    margin-right: 700px;
+    margin-left: 700px;
+    height: 350px;
+    border-radius: 50px;
+
+}
+
+legend {
+    grid-column: 1/3;
+    color: rgb(248, 56, 136);
+    justify-self: center;
+    font-weight: 700;
+    font-size: 25px;
+}
+
+#submit {
+    grid-column: 1/3;
+    width: 90px;
+    height: 45px;
+    border-radius: 15px;
+    background-color: rgb(248, 56, 136);
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    align-self: center;
+    justify-self: center;
+}
+
+#usernameTxt, 
+#emailTxt,
+#passwordTxt,
+#startBalTxt {
+   align-self: center;
+}

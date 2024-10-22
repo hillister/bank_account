@@ -40,7 +40,7 @@ class Dashboard {
 
 
         withdrawlBtn.addEventListener("click", () => {
-            transactionType = 'withdrawl';
+            transactionType = 'withdraw';
             this.showTransactionForm('Withdrawl Amount');
         })
 
@@ -82,6 +82,29 @@ class Dashboard {
         } else {
             transactionMessage.textContent = `Deposit amount must be greater than zero.`;
         }
+    }
+
+    withdraw(amount, transactionMessage) {
+        const account = new BankAccount(this.userAccount.username, this.userAccount.balance);
+        account.transactions = this.userAccount.transactions || [];
+        account.withdraw(amount);
+
+        if (amount > 0) {
+            transactionMessage.textContent = `Successfully withdrew $${amount.toFixed(2)}.`;
+            this.userAccount.balance = account.balance; 
+            this.userAccount.transactions = account.transactions;
+        } else {
+            transactionMessage.textContent = `Withdrawal amount must be greater than zero.`;
+        }
+    }
+
+    updateBalance() {
+        const newBalance = this.userAccount.balance;
+
+        const balanceInfo = document.getElementById('balanceInfo');
+        balanceInfo.textContent = `Balance: $${newBalance.toFixed(2)}`;
+ 
+        localStorage.setItem(this.username, JSON.stringify(this.userAccount));
     }
 }
 

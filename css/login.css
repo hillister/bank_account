@@ -21,11 +21,10 @@ body {
 form {
     background-color: white;
     display: grid;
-    grid-template-rows: repeat(10, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     grid-template-columns: 200px 200px;
     justify-content: center;
     padding: 40px;
-    row-gap: 30px;
     font-size: 20px;
     margin-top: 90px;
     margin-right: 700px;
@@ -33,6 +32,7 @@ form {
     height: 350px;
     border-radius: 50px;
     box-shadow: 5px 5px 5px rgb(248, 56, 136);
+    align-items: center;
 }
 
 legend {
@@ -57,9 +57,6 @@ legend {
     justify-self: center;
 }
 
-#usernameTxt, 
-#emailTxt,
-#passwordTxt,
-#startBalTxt {
-   align-self: center;
+input {
+    height: 30px;
 }

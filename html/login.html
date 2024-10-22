@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Log In</title>
+    <link rel="stylesheet" href="../css/login.css">
+
 </head>
 <body>
+    <header>
+        <h1 id="heading">PiggyPal</h1>
+    </header>
     <form id="loginForm" method="POST">
-        <legend>login</legend>
-        <label for="username">username</label>
+        <legend>Oink In!</legend>
+        <label for="username">Username:</label>
         <input type="text" name="username" id="username" required>
-        <label for="password">password</label>
+        <label for="password">Password:</label>
         <input type="password" name="password" id="password" required>
         <button type="submit" id="submit">Log In</button>
     </form>

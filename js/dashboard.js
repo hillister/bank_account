@@ -89,7 +89,9 @@ class Dashboard {
         account.transactions = this.userAccount.transactions || [];
         account.withdraw(amount);
 
-        if (amount > 0) {
+        if (amount > this.userAccount.balance){
+            transactionMessage.textContent = `You dont have enough money for this withdrawel. Set up an overdraft`;
+        } else if (amount > 0) {
             transactionMessage.textContent = `Successfully withdrew $${amount.toFixed(2)}.`;
             this.userAccount.balance = account.balance; 
             this.userAccount.transactions = account.transactions;

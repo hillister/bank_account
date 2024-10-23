@@ -16,6 +16,7 @@
             <h1 id="welcomeUser">Welcome, </h1>
             <p id="balanceInfo">Balance: </p>
             <p id="accountInfo">Account Number: </p>
+            <p id="overdraftSet"></p>
         </div>
         <div class="depositWithdrawl">
             <button id="deposit">Deposit</button>
@@ -58,7 +59,7 @@
             <div id="overdraftForm" class="hidden">
                 <form id="overdraftFormElement">
                     <label for="limit">Set Limit</label>
-                    <input id="limitAmount" name="limitAmount" required>
+                    <input type="number" id="limitAmount" name="limitAmount" required>
                     <button id="go" type="submit">GO!</button>
                 </form>
             </div>
@@ -67,7 +68,6 @@
         <div class="transactionHisotry">
             <p>Transaction Hisotry</p>
             <div id="transactionInfo"></div>
-            <button id="statement">Get Statement</button>
         </div>
     </div>
     <script src="../js/bankAccount.js"></script>

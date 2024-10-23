@@ -24,7 +24,10 @@ class Dashboard {
 
             const accountNo = document.getElementById('accountInfo')
             accountNo.textContent = `Account number: ${userData.accountNumber}`;
-
+            
+            const overdraftInfo = document.getElementById('overdraftSet');
+            overdraftInfo.textContent = `Overdraft Limit: $${userData.overdraftLimit}`;
+            
             this.userAccount = userData
         }
     }
@@ -85,7 +88,7 @@ class Dashboard {
 
         if (amount > 0) {
             transactionMessage.textContent = `Successfully deposited $${amount.toFixed(2)}.`;
-            this.userAccount.balance = account.balance; 
+            this.userAccount.balance = account.getBalance(); 
             this.userAccount.transactions = account.transactions; 
 
         } else {
@@ -95,21 +98,23 @@ class Dashboard {
 
     withdraw(amount, transactionMessage) {
         const account = new BankAccount(this.userAccount.username, this.userAccount.balance);
+        account.enableOverdraft(this.userAccount.overdraftLimit);
         account.transactions = this.userAccount.transactions || [];
         account.withdraw(amount);
 
-        if (amount > this.userAccount.balance){
-            transactionMessage.textContent = `You dont have enough money for this withdrawel. Set up an overdraft`;
-        } else if (amount > 0) {
-            transactionMessage.textContent = `Successfully withdrew $${amount.toFixed(2)}.`;
-            this.userAccount.balance = account.balance; 
-            this.userAccount.transactions = account.transactions;
-
-
+        if (amount > 0) {
+            if (account.getBalance() < this.userAccount.balance) {
+                this.userAccount.balance = account.getBalance();
+                this.userAccount.transactions = account.transactions;
+                transactionMessage.textContent = `Successfully withdrew $${amount.toFixed(2)}.`;
+            } else {
+                transactionMessage.textContent = `Insufficient funds for this withdrawal. You can increase your overdraft limit or deposit more money.`;
+            }
         } else {
             transactionMessage.textContent = `Withdrawal amount must be greater than zero.`;
         }
     }
+    
 
     updateBalance() {
         const newBalance = this.userAccount.balance;
@@ -212,6 +217,28 @@ class Dashboard {
         getOverdraftBtn.addEventListener("click", () => {
             this.overdraftShow()
         })
+
+       const overdraftFormElement = document.getElementById("overdraftFormElement");
+       overdraftFormElement.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const limitAmount = parseFloat(document.getElementById("limitAmount").value);
+
+        if (limitAmount > 0) {
+            this.userAccount.overdraftLimit = limitAmount;
+            const account = new BankAccount(this.userAccount.username, this.userAccount.balance);
+            account.enableOverdraft(limitAmount);
+
+            localStorage.setItem(this.username, JSON.stringify(this.userAccount));
+
+            const overdraftSet = document.getElementById("overdraftSet");
+            overdraftSet.textContent = `Overdraft limit set to $${this.overdraftLimit}`
+            alert(`Overdraft limit set to $${limitAmount.toFixed(2)}`);
+
+            document.getElementById("overdraftForm").classList.add("hidden"); 
+        } else {
+            alert("Overdraft limit must be greater than zero.");
+        }
+       }) 
     }
 }
 

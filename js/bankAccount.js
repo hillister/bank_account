@@ -8,6 +8,7 @@ class BankAccount {
         this.createdOn = new Date();
         this.isFrozen = false;
         this.isClosed = false;
+        this.overdraftLimit = 0;
     }
 
     freezeAccount(){
@@ -29,23 +30,24 @@ class BankAccount {
     }
 
     withdraw(amount) {
-        if(this.isClosed === true || this.isFrozen === true){
-            console.log('You cannot withdraw money the account is not active')
-        } else if(amount >= 5 && amount <= this.balance){
-            this.balance =  this.balance - amount
-            console.log(`You successfully withdrew $${amount}`)
-            this.transactions.unshift(`Withdrew: $${amount} on ${new Date().toLocaleString()}`)
-        } else if(amount > this.balance && !this.overdraftLimit){
-            console.log(`You do not have enough money to withdraw this ammount. You can enable an overdraft in the settings.`);
-        } else if(this.overdraftLimit && amount < this.balance + this.overdraftLimit){
-            this.balance =  this.balance - amount
-            console.log(`You successfully withdrew $${amount}`)
-            this.transactions.unshift(`Withdrew: $${amount} on ${new Date().toLocaleString()}`)
-        } else if(amount > this.balance && amount > this.overdraftLimit){
-            console.log(`You do not have enough money to withdraw this ammount. Youre overdraft limit is set at ${this.overdraftLimit}`);
-        }else {
-            console.log(`The minimum withdrawl is $5`);
+        if (this.isClosed || this.isFrozen) {
+            console.log('You cannot withdraw money; the account is not active');
+            return;
         }
+
+        if (amount < 5) {
+            console.log(`The minimum withdrawal is $5`);
+            return;
+        }
+        
+        if (amount > this.balance + this.overdraftLimit) {
+            console.log(`You do not have enough money to withdraw this amount. Your overdraft limit is $${this.overdraftLimit}.`);
+            return;
+        }
+
+        this.balance -= amount;
+        console.log(`You successfully withdrew $${amount}`);
+        this.transactions.unshift(`Withdrew: $${amount} on ${new Date().toLocaleString()}`);
     }
 
     enableOverdraft(limit){

@@ -9,6 +9,7 @@ class Dashboard {
             this.transactionButtons();
             this.transaction();
             this.loadTransactionHistory();
+            this.overdraft();
         }
     }
 
@@ -28,7 +29,8 @@ class Dashboard {
         }
     }
 
- 
+
+
     transactionButtons() {
         const depositBtn = document.getElementById('deposit');
         const withdrawlBtn = document.getElementById('withdrawl');
@@ -73,6 +75,8 @@ class Dashboard {
 
         transactionForm.classList.remove("hidden");
     }
+
+ 
 
     deposit(amount, transactionMessage) {
         const account = new BankAccount(this.userAccount.username, this.userAccount.balance);
@@ -193,6 +197,21 @@ class Dashboard {
                 transferHistoryList.appendChild(listItem);
             });
         }
+    }
+
+    overdraftShow() {
+        const overdraftForm = document.getElementById("overdraftForm");
+        
+        document.getElementById("overdraftFormElement").reset();
+        overdraftForm.classList.remove("hidden");
+    }
+
+    overdraft() {
+        const getOverdraftBtn = document.getElementById("getOverdraft")
+
+        getOverdraftBtn.addEventListener("click", () => {
+            this.overdraftShow()
+        })
     }
 }
 

@@ -8,6 +8,7 @@ class Dashboard {
             this.loadUserData();
             this.transactionButtons();
             this.transaction();
+            this.loadTransactionHistory();
         }
     }
 
@@ -58,6 +59,7 @@ class Dashboard {
             }
 
             this.updateBalance();
+            this.loadTransactionHistory();
         });
     }
 
@@ -81,6 +83,7 @@ class Dashboard {
             transactionMessage.textContent = `Successfully deposited $${amount.toFixed(2)}.`;
             this.userAccount.balance = account.balance; 
             this.userAccount.transactions = account.transactions; 
+
         } else {
             transactionMessage.textContent = `Deposit amount must be greater than zero.`;
         }
@@ -97,6 +100,8 @@ class Dashboard {
             transactionMessage.textContent = `Successfully withdrew $${amount.toFixed(2)}.`;
             this.userAccount.balance = account.balance; 
             this.userAccount.transactions = account.transactions;
+
+
         } else {
             transactionMessage.textContent = `Withdrawal amount must be greater than zero.`;
         }
@@ -145,6 +150,7 @@ class Dashboard {
 
             senderAccount.transfer(amount, recipientAccount); 
 
+
             this.userAccount.balance = senderAccount.getBalance();
             this.userAccount.transactions = senderAccount.transactions;
             localStorage.setItem(this.username, JSON.stringify(this.userAccount));
@@ -170,6 +176,23 @@ class Dashboard {
             }
         }
         return null;
+    }
+
+
+    loadTransactionHistory() {
+        const transferHistoryList = document.getElementById('transactionInfo');
+        transferHistoryList.innerHTML = ''; 
+
+        const transactions = this.userAccount.transactions || [];
+        if (transactions.length === 0) {
+            transferHistoryList.innerHTML = '<li>No transfer history available.</li>';
+        } else {
+            transactions.forEach((transaction) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = transaction;
+                transferHistoryList.appendChild(listItem);
+            });
+        }
     }
 }
 

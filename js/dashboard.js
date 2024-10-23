@@ -10,6 +10,7 @@ class Dashboard {
             this.transaction();
             this.loadTransactionHistory();
             this.overdraft();
+            this.logout();
         }
     }
 
@@ -27,7 +28,7 @@ class Dashboard {
             
             const overdraftInfo = document.getElementById('overdraftSet');
             overdraftInfo.textContent = `Overdraft Limit: $${userData.overdraftLimit}`;
-            
+
             this.userAccount = userData
         }
     }
@@ -239,6 +240,14 @@ class Dashboard {
             alert("Overdraft limit must be greater than zero.");
         }
        }) 
+    }
+
+    logout(){
+        const logoutBtn = document.getElementById("logout");
+        logoutBtn.addEventListener("click", () => {
+            sessionStorage.removeItem("loggedInUser"); 
+            window.location.href = '../main/index.html';
+        })
     }
 }
 
